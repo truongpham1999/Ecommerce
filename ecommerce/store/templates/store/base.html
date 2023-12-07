@@ -19,6 +19,12 @@
 	    <!-- Bootstrap Max CDN --> 
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
+        <script>
+            var csrf_token = "{{ csrf_token }}";
+        </script>
+
+        <script src="{% static 'js/store.js' %}"></script>
+
     </head>
 
     <title> Edenthought </title>
@@ -75,8 +81,18 @@
                 &nbsp; &nbsp; &nbsp;
 
                 <li class="nav-item">
-                    <a type="button" role="button" href="/" class="btn btn-outline-secondary">                    
+                    <a type="button" role="button" href="{% url 'cart_summary' %}" class="btn btn-outline-secondary">                    
                         <i class="fa fa-shopping-cart" aria-hidden="true"> </i>
+                        &nbsp;
+                        <div id="cart_qty" class="d-inline-flex">
+                            {% with qty_amount=cart|length %}
+                                {% if qty_amount > 0 %}
+                                    {{ qty_amount }}
+                                {% else %}
+                                    0
+                                {% endif %}
+                            {% endwith %}
+                        </div> 
                     </a>
                 </li>
 
