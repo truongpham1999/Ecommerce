@@ -1,5 +1,6 @@
 from decimal import Decimal
 from store.models import Product
+import copy
 
 class Cart():
     def __init__(self, request):
@@ -25,7 +26,8 @@ class Cart():
     def __iter__(self):
         product_ids = self.cart.keys()
         products = Product.objects.filter(id__in=product_ids)
-        cart = self.cart.copy()
+        
+        cart = copy.deepcopy(self.cart)
 
         for product in products:
             cart[str(product.id)]['product'] = product
@@ -37,3 +39,16 @@ class Cart():
 
     def get_total_price(self):
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+    
+    def delete(self, product):
+        product_id = str(product)
+        if product_id in self.cart:
+            del self.cart[product_id]
+            self.session.modified = True
+    
+    def update(self, product_id, quantity):
+        product_id = str(product_id)
+        if product_id in self.cart:
+            self.cart[product_id]['quantity'] = quantity
+            self.session.modified = True
+

@@ -46,7 +46,7 @@
 
                   &nbsp; 
                   
-                  <select id="">                 
+                  <select id="select{{ product.id }}">                 
                     <option selected>                 
                         {{item.quantity}}                 
                     </option>                  
@@ -58,11 +58,11 @@
                   
                   <br> <br>
 
-                  <button type="button" id="update-button"class="btn btn-primary btn-sm update-button"> Update </button>
+                  <button type="button" data-url="{% url 'cart_update' %}" data-index="{{ product.id }}" class="btn btn-primary btn-sm update-button"> Update </button>
                   
                   &nbsp;
 
-                  <button type="button" id="delete-button" class="btn btn-danger btn-sm delete-button"> Delete </button>
+                  <button type="button" data-url="{% url 'cart_delete' %}" data-index="{{ product.id }}" class="btn btn-danger btn-sm delete-button"> Delete </button>
 
                 </div>        
               </div>        
