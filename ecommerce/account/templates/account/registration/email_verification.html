@@ -1,0 +1,11 @@
+<!-- autoescape lets our template rendering system know that the data is safe in an escaped form -->
+{% autoescape off %}
+Hi,
+
+Thanks for signing up 
+
+Verify your email by clicking the link below
+
+http://{{ domain }}{% url 'email_verification' uidb64=uid token=token %}
+
+{% endautoescape %}

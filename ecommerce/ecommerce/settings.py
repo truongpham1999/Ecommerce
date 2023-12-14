@@ -34,7 +34,12 @@ INSTALLED_APPS = [
     'cart',
     'store',
     'account',
+
     'mathfilters',
+    'crispy_forms',
+
+    #######################
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -131,3 +138,14 @@ MEDIA_ROOT = BASE_DIR / 'static/media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# - Email setup
+# - This is the configuration for sending emails from the application
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# - Email credentials
+EMAIL_HOST_USER = 'truongphamzero2999@gmail.com'
+EMAIL_HOST_PASSWORD = 'irexspwoxkqwxqsq'
