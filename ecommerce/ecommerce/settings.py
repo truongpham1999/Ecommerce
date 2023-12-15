@@ -140,7 +140,7 @@ MEDIA_ROOT = BASE_DIR / 'static/media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # - Email setup
-# - This is the configuration for sending emails from the application
+# - Configuration for sending emails from the application
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

@@ -1,2 +1,25 @@
-<h1> A verification link was sent to your email </h1>
-<p> Check your email </p>
+{% include "store/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <style>
+        body {
+            background-color: #CCCCCC;
+        }
+    </style>
+
+    <body>
+
+        <div class="container bg-white shadow-md p-5 mt-4 mb-5 form-layout text-center">
+            <i class="fa fa-envelope fa-3x text-center mb-3" aria-hidden="true"></i>
+            
+            <h5> <strong>A verification link was sent to your email</strong> </h5>
+            <hr>
+            <p> Please check your email </p>
+        </div>
+
+    </body>
+
+{% endblock %}

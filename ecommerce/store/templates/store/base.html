@@ -27,12 +27,12 @@
 
     </head>
 
-    <title> Edenthought </title>
+    <title> E-Commerce </title>
 
     <nav class="navbar navbar-expand-lg bg-primary justify-content-center">
 
         <a class="navbar-brand main-heading text-white" href="{% url 'store' %}">             
-        &nbsp; &nbsp; Edenthought    
+        &nbsp; &nbsp; Commerce   
         </a>
 
         <button
@@ -71,12 +71,22 @@
 
         <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">           
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">           
-                    <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'register' %}"> Register </a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-alert navbar-btn text-white" type="button"  href="/"> Login </a>
-                </li>
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'dashboard' %}"> <i class="fa fa-home" aria-hidden="true"></i> &nbsp; Dashboard </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'logout' %}"> <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; Logout </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">           
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'register' %}"> Register </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'login' %}"> Login </a>
+                    </li>
+                {% endif %}
 
                 &nbsp; &nbsp; &nbsp;
 

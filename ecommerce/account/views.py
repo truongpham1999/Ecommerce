@@ -4,11 +4,16 @@ from django.contrib.sites.shortcuts import get_current_site
 from .token import user_tokenizer_generate
 
 from django.contrib.auth.models import User
-from .forms import CreateUserForm
+from .forms import CreateUserForm, LoginForm, UpdateUserForm
 
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+
+from django.contrib.auth.models import auth
+from django.contrib.auth import authenticate, login, logout
+
+from django.contrib.auth.decorators import login_required
 
 
 def register(request):
@@ -62,3 +67,58 @@ def email_verification_success(request):
 def email_verification_failed(request):
     return render(request, 'account/registration/email_verification_failed.html')
 
+
+def login(request):
+    form = LoginForm()
+
+    if request.method == 'POST':
+        form = LoginForm(request, data=request.POST)
+
+        if form.is_valid():
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(request, username=username, password=password)
+            
+            if user:
+                auth.login(request, user)
+                return redirect('dashboard')
+    
+    return render(request, 'account/my_login.html', {
+        'form': form,
+    })
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('store')
+
+
+@login_required(login_url='login')
+def dashboard(request):
+    return render(request, 'account/dashboard.html')
+
+
+@login_required(login_url='login')
+def profile_manage(request):
+    form = UpdateUserForm(instance=request.user)
+    
+    if request.method == 'POST':
+        form = UpdateUserForm(request.POST, instance=request.user)
+        if form.is_valid(): 
+            form.save()
+            return redirect('dashboard')
+
+    return render(request, 'account/profile_management.html', {
+        'form': form,
+    })
+
+
+@login_required(login_url='login')
+def account_delete(request):
+    if request.method == 'POST':
+        user = User.objects.get(pk=request.user.pk)
+        user.delete()
+        return redirect('store')
+
+    return render(request, 'account/delete_account.html')
