@@ -111,6 +111,20 @@
         </div>
     </nav>
 
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div id="message-timer" class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                <strong> {{ message }} </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div> 
+        {% elif message.tags == 'error' %}
+            <div id="message-timer" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                <strong> {{ message }} </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div> 
+        {% endif %}
+    {% endfor %} 
+
     <body>
 
         {% block content %}       

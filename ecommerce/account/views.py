@@ -15,6 +15,8 @@ from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.decorators import login_required
 
+from django.contrib import messages
+
 
 def register(request):
     form = CreateUserForm()
@@ -90,8 +92,13 @@ def login(request):
 
 
 def logout(request):
-    auth.logout(request)
-    return redirect('store')
+    for key in list(request.session.keys()):
+        if key != 'session_key':
+            del request.session[key]
+    
+    messages.success(request, 'You have been logged out')
+
+    return redirect('store') 
 
 
 @login_required(login_url='login')
@@ -107,6 +114,8 @@ def profile_manage(request):
         form = UpdateUserForm(request.POST, instance=request.user)
         if form.is_valid(): 
             form.save()
+
+            messages.success(request, 'Your profile has been updated')
             return redirect('dashboard')
 
     return render(request, 'account/profile_management.html', {
@@ -119,6 +128,9 @@ def account_delete(request):
     if request.method == 'POST':
         user = User.objects.get(pk=request.user.pk)
         user.delete()
+
+        messages.error(request, 'Your account has been deleted')
+
         return redirect('store')
 
     return render(request, 'account/delete_account.html')

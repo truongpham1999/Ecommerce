@@ -18,6 +18,14 @@ $(document).ready(function() {
         event.preventDefault();
         update_product($(this));
     })
+
+    // message timer
+    var message_timeout = document.getElementById('message-timer');
+    if (message_timeout) {
+        setTimeout(function() {
+            message_timeout.style.display = 'none';
+        }, 5000);
+    }
 });
 
 function update_product(button) {
