@@ -1,0 +1,85 @@
+{% include "store/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+    body {
+        background-color: #CCCCCC;
+    }
+</style>
+
+    <body>
+        <br>
+
+        <div class="container bg-white shadow-md p-5" style="width:500px; border-radius:20px;">
+            <form id="form">
+                <div>
+                    <div class="text-center mb-3">
+                        <h3> <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp; Complete your order </h3>
+                    </div>
+                    
+                    <p> Please enter in the relevant information below. </p>
+
+                    <hr>
+                    <br>
+
+                    <div class="form-field">                   
+                        <input class="form-control validate" id="name" type="text" placeholder="Full name*" autocomplete="off" value="{{ shipping.full_name }}" required>
+                    </div>
+                    <br>
+
+                    <div class="form-field">
+                        <input class="form-control validate" id="phone_number" type="text" placeholder="Phone number*" autocomplete="off" value="{{ shipping.phone_number }}" required>
+                    </div>                 
+                    <br>
+
+                    <div class="form-field">
+                        <input class="form-control validate" id="email" type="email" placeholder="Email address*" autocomplete="off" value="{{ shipping.email }}" required>
+                    </div>                 
+                    <br>
+                    
+                    <div class="form-field">
+                        <input class="form-control validate" id="address1" type="text" placeholder="Address 1*" autocomplete="off" value="{{ shipping.address1 }}" required>
+                    </div>
+                    <br>
+
+                    <div class="form-field">
+                        <input class="form-control validate" id="address2" type="text" placeholder="Address 2*" autocomplete="off" value="{{ shipping.address2 }}" required>
+                    </div>
+                    <br>
+
+                    <div class="form-field">
+                        <input class="form-control validate" id="city" type="text" placeholder="City*" autocomplete="off" value="{{ shipping.city }}" required>
+                    </div>
+                    <br>
+
+                    <div class="form-field">
+                        <input class="form-control" id="district" type="text" placeholder="District*" autocomplete="off" value="{{ shipping.district }}" required>
+                    </div>
+                    <br>
+
+                    <div class="form-field">
+                        <input class="form-control" id="ward" type="text" placeholder="Ward*" autocomplete="off" value="{{ shipping.ward }}" required>
+                    </div>
+            
+                </div>
+                <br>
+
+                <button id="complete-order" type="submit" class="btn btn-primary navbar-btn text-white"> &nbsp; Complete order </button>
+                <br>
+
+            </form>
+
+        </div>
+        <br>
+
+    </body>
+
+    <!-- Ajax integration -->
+    <script>
+
+    </script>
+
+{% endblock %}

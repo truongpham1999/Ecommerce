@@ -6,7 +6,7 @@ $(document).ready(function() {
         event.preventDefault();
         add_product($(this));
     });
-
+ 
     // delete product from cart
     $('.delete-button').click(function(event) {
         event.preventDefault();

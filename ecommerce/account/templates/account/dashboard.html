@@ -22,6 +22,7 @@
             <hr>
             <li> Track your orders </li>
             <li> Manage your account </li>
+            <li> Manage shipping address </li>
         
         </div>
         <div class="container bg-white shadow-md p-5 mt-4 mb-4 form-layout">
@@ -42,6 +43,16 @@
             <hr>
             <p> Update or delete your account </p>
             <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'profile_manage' %}"> Profile management </a>
+        
+        </div>
+        <div class="container bg-white shadow-md p-5 mt-4 mb-4 form-layout">
+
+            <div class="text-center">
+                <h4> <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp; Manage shipping </h4>
+            </div>
+            <hr>
+            <p> Shipping address </p>
+            <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'manage_shipping' %}"> Manage_shipping </a>
         
         </div>
 

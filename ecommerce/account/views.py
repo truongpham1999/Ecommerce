@@ -6,12 +6,15 @@ from .token import user_tokenizer_generate
 from django.contrib.auth.models import User
 from .forms import CreateUserForm, LoginForm, UpdateUserForm
 
+from payment.forms import ShippingForm
+from payment.models import ShippingAddress
+
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
 from django.contrib.auth.models import auth
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate
 
 from django.contrib.auth.decorators import login_required
 
@@ -134,3 +137,28 @@ def account_delete(request):
         return redirect('store')
 
     return render(request, 'account/delete_account.html')
+
+
+# Shipping view
+@login_required(login_url='login')
+def manage_shipping(request):
+    try:
+        shipping = ShippingAddress.objects.get(user=request.user.id)
+    except ShippingAddress.DoesNotExist:
+        shipping = None
+    
+    form = ShippingForm(instance=shipping)
+
+    if request.method == 'POST':
+        form = ShippingForm(request.POST, instance=shipping)
+        if form.is_valid():
+            shipping = form.save(commit=False)
+            shipping.user = request.user
+            shipping.save()
+
+            messages.success(request, 'Your shipping address has been updated')
+            return redirect('dashboard')
+    
+    return render(request, 'account/manage_shipping.html', {
+        'form': form,
+    })

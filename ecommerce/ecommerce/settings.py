@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'cart',
     'store',
     'account',
+    'payment',
 
     'mathfilters',
     'crispy_forms',
