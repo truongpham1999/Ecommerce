@@ -5,7 +5,7 @@ E-commerce website using Django
 1. Register
 2. Log in
 3. View products 
-4. User management
+4. User management (delete account, update profile...)
 5. Email verification
 6. Shipping and Order Management
 7. Reset password
