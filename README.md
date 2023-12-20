@@ -1,2 +1,2 @@
-# Ecommerc
-Ecommerce website using Django
+# Ecommerce
+E-commerce website using Django
