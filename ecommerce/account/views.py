@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from .forms import CreateUserForm, LoginForm, UpdateUserForm
 
 from payment.forms import ShippingForm
-from payment.models import ShippingAddress
+from payment.models import ShippingAddress, Order, OrderItem
 
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
@@ -162,3 +162,14 @@ def manage_shipping(request):
     return render(request, 'account/manage_shipping.html', {
         'form': form,
     })
+
+
+@login_required(login_url='my-login')
+def track_orders(request):
+    try:
+        orders = OrderItem.objects.filter(user=request.user)
+        return render(request, 'account/track_orders.html', {
+            'orders': orders,
+        })
+    except:
+        return render(request, 'account/track_orders.html')

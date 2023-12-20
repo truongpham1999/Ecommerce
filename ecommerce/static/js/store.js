@@ -6,7 +6,7 @@ $(document).ready(function() {
         event.preventDefault();
         add_product($(this));
     });
- 
+
     // delete product from cart
     $('.delete-button').click(function(event) {
         event.preventDefault();
@@ -27,6 +27,7 @@ $(document).ready(function() {
         }, 5000);
     }
 });
+
 
 function update_product(button) {
     var url = button.data('url');
@@ -50,7 +51,7 @@ function update_product(button) {
         error: function(xhr, errmsg, err) {
             console.log(xhr.status);
         }
-    })
+    });
 }
 
 function delete_product(button) {

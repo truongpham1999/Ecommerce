@@ -30,4 +30,7 @@ urlpatterns = [
 
     # Shipping Management
     path('manage_shipping', views.manage_shipping, name='manage_shipping'),
+
+    # Order Management
+    path('track_orders', views.track_orders, name='track_orders'),
 ]

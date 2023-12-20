@@ -67,7 +67,8 @@
                 </div>
                 <br>
 
-                <button id="complete-order" type="submit" class="btn btn-primary navbar-btn text-white"> &nbsp; Complete order </button>
+                {% comment %} <button id="complete-order" type="submit" class="btn btn-primary navbar-btn text-white"> &nbsp; Complete order </button> {% endcomment %}
+                    <button id="complete-order" class="btn btn-primary navbar-btn text-white"> &nbsp; Complete order </button>
                 <br>
 
             </form>
@@ -78,8 +79,38 @@
     </body>
 
     <!-- Ajax integration -->
+    
     <script>
+        $(document).on('submit',  function(event){
 
+            event.preventDefault();
+    
+            $.ajax({
+                type: 'POST',
+                url: '{% url "complete_checkout" %}',
+                data: {    
+                    name: $('#name').val(),
+                    email: $('#email').val(),
+                    phone_number: $('#phone_number').val(),
+                    address1: $('#address1').val(),
+                    address2: $('#address2').val(),
+                    city: $('#city').val(),
+                    district: $('#district').val(),
+                    ward: $('#ward').val(),  
+    
+                    csrfmiddlewaretoken: "{{csrf_token}}",
+                    action: 'post'    
+                },    
+                success: function(json){    
+                    //console.log(json)    
+                    window.location.replace("{% url 'payment_success' %}");       
+                },    
+                error: function(xhr, errmsg, err){    
+                    window.location.replace("{% url 'payment_failed' %}");   
+                }
+    
+            });
+        })
     </script>
 
 {% endblock %}
