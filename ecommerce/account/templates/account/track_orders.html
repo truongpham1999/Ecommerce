@@ -16,33 +16,36 @@
 
     <br>
 
-    <div class="container bg-white shadow-md p-5 form-layout ">
-        <div class="text-center">
-            <h3> <i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp; My orders </h3>
+    <div class="container">
+        <div class="row justify-content-center p-3">
+            <div class="container bg-white shadow-md p-5 form-layout ">
+                <div class="text-center">
+                    <h3> <i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp; My orders </h3>
+                </div>
+                <hr>
+                <p> View all of your orders. </p>
+            </div>
         </div>
-        <hr>
-        <p> View all of your orders. </p>
+
+        <div class="row justify-content-center p-3">
+            <div class="container bg-white shadow-md p-5 form-layout ">
+                {% for order in orders %}
+                    <strong> <i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp;  Order ID # {{order.id}} </strong>            
+                    <br> <br>
+
+                    Name: <strong>{{order.product}}</strong>
+                    <br> <br>
+
+                    Quantity: <strong>{{order.quantity}}</strong>
+
+                    <br> <br>
+                    Amount paid: <strong>$ {{order.price}}</strong>
+
+                    <br> <br>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-
-    <br>
-
-    <div class="container bg-white shadow-md p-5 form-layout ">
-        {% for order in orders %}
-            <strong> <i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp;  Order ID # {{order.id}} </strong>            
-            <br> <br>
-
-            Name: <strong>{{order.product}}</strong>
-            <br> <br>
-
-            Quantity: <strong>{{order.quantity}}</strong>
-
-            <br> <br>
-            Amount paid: <strong>$ {{order.price}}</strong>
-
-            <br> <br>
-            <hr>
-        {% endfor %}
-    </div>
-    <br>
 
 {% endblock %}

@@ -13,49 +13,62 @@
     </style>
 
     <body>
+        <div class="container-fluid p-3 mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="bg-white shadow-md p-3">
+                        <hr>
+                        <div class="text-center">
+                            <h4> Welcome, {{ user }} </h4>
+                        </div>
+                        <hr>
+                        <ul>
+                            <li> Track your orders </li>
+                            <li> Manage your account </li>
+                            <li> Manage shipping address </li>
+                        </ul>
+                    </div>
+                </div>
 
-        <div class="container bg-white shadow-md p-5 mt-4 mb-4 form-layout">
-
-            <div class="text-center">
-                <h4> Welcome, {{ user }} </h4>
+                <div class="col-md-6 col-sm-12">
+                    <div class="bg-white shadow-md p-3">
+                        <hr>
+                        <div class="text-center">
+                            <h4> <i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp; Track your orders </h4>
+                        </div>
+                        <hr>
+                        <p> Track your orders here </p>
+                        <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'track_orders' %}"> My orders </a>
+                    </div>
+                </div>
             </div>
-            <hr>
-            <li> Track your orders </li>
-            <li> Manage your account </li>
-            <li> Manage shipping address </li>
-        
-        </div>
-        <div class="container bg-white shadow-md p-5 mt-4 mb-4 form-layout">
+            
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="bg-white shadow-md p-3">
+                        <hr>
+                        <div class="text-center">
+                            <h4> <i class="fa fa-address-book" aria-hidden="true"></i> &nbsp; Manage your account </h4>
+                        </div>
+                        <hr>
+                        <p> Update or delete your account </p>
+                        <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'profile_manage' %}"> Profile management </a>
+                    </div>
+                </div>
 
-            <div class="text-center">
-                <h4> <i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp; Track your orders </h4>
+                <div class="col-md-6 col-sm-12">
+                    <div class="bg-white shadow-md p-3">
+                        <hr>
+                        <div class="text-center">
+                            <h4> <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp; Manage shipping </h4>
+                        </div>
+                        <hr>
+                        <p> Shipping address </p>
+                        <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'manage_shipping' %}"> Manage_shipping </a>
+                    </div>
+                </div>
             </div>
-            <hr>
-            <p> Track your orders here </p>
-            <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'track_orders' %}"> My orders </a>
-        
         </div>
-        <div class="container bg-white shadow-md p-5 mt-4 mb-4 form-layout">
-
-            <div class="text-center">
-                <h4> <i class="fa fa-address-book" aria-hidden="true"></i> &nbsp; Manage your account </h4>
-            </div>
-            <hr>
-            <p> Update or delete your account </p>
-            <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'profile_manage' %}"> Profile management </a>
-        
-        </div>
-        <div class="container bg-white shadow-md p-5 mt-4 mb-4 form-layout">
-
-            <div class="text-center">
-                <h4> <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp; Manage shipping </h4>
-            </div>
-            <hr>
-            <p> Shipping address </p>
-            <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'manage_shipping' %}"> Manage_shipping </a>
-        
-        </div>
-
     </body>
 
 {% endblock %}
