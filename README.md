@@ -9,7 +9,9 @@ E-commerce website using Django
 5. Email verification
 6. Shipping and Order Management
 7. Reset password
-8. shopping cart sessions
+8. Shopping cart sessions
+9. Paginator
+10. Responsive design for mobile and desktop
 
 ## Technologies Used
 - Python
@@ -20,7 +22,6 @@ E-commerce website using Django
 - Bootstrap
 - SQLite
 - Django ORM
-- Responsive design for mobile and desktop
 
 For more details on the code, please refer to the comments in each file.
 
